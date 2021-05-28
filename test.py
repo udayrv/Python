@@ -1,0 +1,1 @@
+print("Python installation in VS Code is Successful")
