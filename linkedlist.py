@@ -42,6 +42,12 @@ class SLL:
         self.head = temp
 
     def size(self):
+        """Traverses the linked list and returns an integer value representing the number of 
+        nodes in the linked list.
+        
+        The time complexity is O(n) because every node in the Linked List has to be visited 
+        in order to calculate the size of the Linked List."""
+
         size = 0
         if self.head is None:
             return 0
@@ -54,7 +60,47 @@ class SLL:
         return size
 
     def search(self, data):
-        pass
+        """Traverses the Linked list and returns True if the data searched for is present in one
+        of the nodes. Otherwise, it returns False.
+        
+        The time complexity is O(n), because in the worst case we have to go through all the
+        Nodes for searching the data."""
+
+        if self.head is None:
+            return "Linked List is empty. There are no nodes to search"
+
+        current = self.head
+        while current is not None:
+            if current.get_data() == data:
+                return True
+            else:
+                current = current.get_next()
+        
+        return False
 
     def remove(self, data):
-        pass
+        """It removes the first occurance of a Node that contains the data argument as its self.data
+       variable. Returns nothing.
+       
+       Time complexity is O(n) because, in the worst case we have to visit every node in the List."""
+        if self.head is None:
+            return "Linked List is Empty. There are no nodes to Remove."
+
+        current = self.head
+        previous = None
+        found = False
+
+        while not found:
+            if current.get_data() == data:
+                found = True
+                print("A node with data value {} is removed.".format(data))
+            else:
+                if current.get_next() == None:
+                    return "A Node with that data value is not present."
+                else:
+                    previous = current
+                    current = current.get_next()
+        if previous is None:
+            self.head = current.get_next()
+        else:
+            previous.set_next(current.get_next())
